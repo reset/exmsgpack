@@ -43,7 +43,8 @@ defmodule MsgPack.Match do
     Enum.reduce names,
         pattern, fn(key, pat) ->
           if Enum.count(names, fn(x) -> x == key end) > 1 do
-            replace(key, (quote do: var!(unquote(binary_to_atom("_#{key}")), __MODULE__)), pat)
+            var = { :"_#{key}", [], __MODULE__ }
+            replace(key, var, pat)
           else
             replace(key, (quote do: _), pat)
           end
