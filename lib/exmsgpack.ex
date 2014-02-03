@@ -302,7 +302,7 @@ defprotocol MsgPack.Protocol do
   def pack(term)
 end
 
-defimpl MsgPack.Protocol, for: Number do
+defimpl MsgPack.Protocol, for: Integer do
 
   @spec pack(number) :: MsgPack.packed
   def pack(i) when is_integer(i) and i < 0 do
